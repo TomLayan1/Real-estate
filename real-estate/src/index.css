@@ -10,6 +10,13 @@ body{
 
 @layer utilities {
   .hero-bx {
-    
+    background: url('../../real-estate/src/Assets/hero-img.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
+}
+
+.test {
+  color: #00000060;
 }

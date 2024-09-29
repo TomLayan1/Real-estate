@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <div className='w-full fixed z-30 top-5 md:top-7'>
-      <div className='w-[92% md:w-[90%] container mx-auto bg-white px-3 md:px-8 py-3 lg:py-5 rounded-full bg-opacity-60 border border-white'>
+      <div className='w-[92%] md:w-[90%] container mx-auto bg-white px-3 md:px-8 py-3 lg:py-5 rounded-full bg-opacity-60 border border-white'>
         <div className='relative flex items-center justify-between'>
           <div className='flex items-center'>
             <MdOutlineHouseboat style={{ color: '#825b52' }} className='text-3xl' />

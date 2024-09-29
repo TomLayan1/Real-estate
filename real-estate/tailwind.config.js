@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primaryColor: '#825b52'
+        primaryColor: '#825b52',
+        heroBg: '#00000060'
       },
       container: {
         center: true,
