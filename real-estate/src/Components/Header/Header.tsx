@@ -8,12 +8,14 @@ const Header = () => {
   const [ isTuggle, setIsTuggle] = useState<boolean>(false)
   const [searchClicked, setSearchClicked] = useState<boolean>(false)
 
+  
+
 
   return (
     <div className='w-full fixed z-30 top-5 md:top-7'>
       <div className='w-[92%] md:w-[90%] container mx-auto bg-white px-3 md:px-8 py-3 lg:py-5 rounded-full bg-opacity-85 border border-white'>
         <div className='relative flex items-center justify-between'>
-          <div className='flex items-center lg:mr-72'>
+          <div className='flex items-center lg:mr-60'>
             <MdOutlineHouseboat style={{ color: '#825b52' }} className='text-3xl' />
             <h1 className='hidden md:block text-2xl'>Realtor</h1>
           </div>

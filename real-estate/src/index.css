@@ -21,8 +21,14 @@ body{
     background-position: center;
     background-repeat: no-repeat;
   }
+  .faq-bx {
+    background: url('/src/Assets/faq.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
 
 .test {
-  color: #00000059;
+  color: #00000069;
 }

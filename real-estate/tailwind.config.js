@@ -8,7 +8,7 @@ module.exports = {
       colors: {
         primaryColor: '#825b52',
         bodyColor: '#fafafa',
-        heroBg: '#00000060'
+        heroBg: '#00000069'
       },
       container: {
         center: true,

@@ -53,7 +53,7 @@ export const RealEstateContextProvider: React.FC<RealEstateContextProviderProps>
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   // console.log(forSaleData)
-  console.log(forRentData)
+  // console.log(forRentData)
 
 
   // Fetch For sale datas

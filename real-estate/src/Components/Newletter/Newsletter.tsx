@@ -8,7 +8,7 @@ const Newsletter: React.FC = () => {
     <section className='newsletter-bx h-[360px] relative'>
       <div className='absolute pt-[50px] top-0 bottom-0 left-0 right-0 w-full h-full bg-heroBg overflow-hidden'>
         <div className='container'>
-          <div className='w-full md:w-[60%] lg:w-[30%] mx-auto mb-28 md:mb-16'>
+          <div className='w-full md:w-[60%] lg:w-[40%] mx-auto mb-28 md:mb-16'>
             <h3 className='text-xl md:text-2xl text-center font-bold text-white leading-relaxed tracking-wide mb-10'>Subscribe now for exclusive property insight and deals!</h3>
             <form className='w-[95%] mx-auto bg-white flex items-center justify-between rounded-full py-1 pl-5 pr-1'>
               <PiEnvelope size={27} className='text-primaryColor text-lg' />
