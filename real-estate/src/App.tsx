@@ -1,12 +1,17 @@
 import React from 'react';
 import { RealEstateContextProvider } from './Context/Context';
-import { BrowserRouter, Router, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home';
 
 function App() {
   return (
     <RealEstateContextProvider>
-      <Home />
+      <BrowserRouter>
+        <Routes>
+          <Route path={'/'} element={<Home />} />
+          <Route path={'/property/:ExternalID'}  />
+        </Routes>
+      </BrowserRouter>
     </RealEstateContextProvider>
   );
 }

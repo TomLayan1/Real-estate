@@ -1,30 +1,25 @@
 import { useState, useEffect, createContext, ReactNode } from 'react'
-import axios, { AxiosRequestConfig} from 'axios'
+import axios from 'axios'
 
 
 interface PropertyDetail {
-  id: number;
-  image: string;
-  purpose: string
-  title: string;
-  description: string;
-  slug: string;
-  price: number;
-  geography: {
-    lat: number;
-    lng: number;
+  externalID: string;
+  coverPhoto: {
+    url: string;
   };
-  location: [
-    {
-      id: number
-      name: string
+  price: number;
+  rentFrequency: string;
+  rooms: string;
+  title: string;
+  baths: number;
+  area: number;
+  agency: {
+    name: string;
+    logo: {
+      url: string;
     }
-  ]
-  category: [
-    {
-      name: string;
-    }
-  ]
+  };
+  isVerified: boolean
 }
 
 // Define the response structure from the API
@@ -57,7 +52,7 @@ export const RealEstateContextProvider: React.FC<RealEstateContextProviderProps>
   const [forRentData, setForRentData] = useState<PropertyDetail[] | null>(null) 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
-  console.log(forSaleData)
+  // console.log(forSaleData)
   console.log(forRentData)
 
 
@@ -68,12 +63,6 @@ export const RealEstateContextProvider: React.FC<RealEstateContextProviderProps>
       const options = {
         method: 'GET',
         url: 'https://bayut.p.rapidapi.com/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6',
-        // params: {
-        //   query: 'abu dhabi',
-        //   hitsPerPage: '25',
-        //   page: '0',
-        //   lang: 'en'
-        // },
         headers: {
           'x-rapidapi-key': '0d93fb5ea1msh5470af294a84a62p1b2147jsn2376be21262b',
           'x-rapidapi-host': 'bayut.p.rapidapi.com'
@@ -123,7 +112,7 @@ export const RealEstateContextProvider: React.FC<RealEstateContextProviderProps>
     forSaleData,
     forRentData,
     isLoading,
-    error
+    error,
   }
 
   return (

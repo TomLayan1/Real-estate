@@ -1,12 +1,61 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { BsGridFill } from "react-icons/bs";
+import { FaBath, FaBed } from "react-icons/fa";
+import { MdVerified } from "react-icons/md";
+import millify from 'millify'
+import placeholder from '../../Assets/placeholder.jpg'
 import { RealEstateContext } from '../../Context/Context'
 
 const Sale = () => {
   // From context
   const { forSaleData, isLoading, error } = useContext(RealEstateContext)
   return (
-    <div>Sale</div>
+    <section id='sale' className='pt-24 pb-14'>
+      <div className='container'>
+        <div className='mb-20 w-[90%] mx-auto'>
+          <h1 className='text-2xl md:text-4xl text-center text-primaryColor font-bold mb-3'>Find Your Perfect Rental Home</h1>
+          <p className='text-center'>Browse through a curated selection of rental properties designed to fit your lifestyle and budget.</p>
+        </div>
+        <div className='w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
+          {forSaleData?.map(sale => (
+            <Link to={`/property/${sale?.externalID}`} key={sale?.externalID} className='shadow-customShado'>
+              <div className='bb-black h-[190px]'>
+                <img className='w-full h-full rounded-xl'  src={sale?.coverPhoto ? sale.coverPhoto.url : placeholder} alt='house' />
+              </div>
+
+              <div className='py-2 text-sm'>
+                <div className='flex items-center justify-between'>
+                  <div className='flex items-center gap-1 mb-2'>
+                    {sale.isVerified && <MdVerified className='text-primaryColor text-lg' />}
+                    <p className='font-bold'>AED {millify(sale?.price)}/{sale.rentFrequency}</p>
+                  </div>
+                  <img className='w-[30px]' src={sale?.agency?.logo?.url} alt={sale?.agency?.name} />
+                </div>
+
+                <div className='flex items-center gap-3 text-primaryColor mb-2'>
+                  <div className='flex items-center gap-1'>
+                    <p className='text-black'>{sale?.rooms}</p>
+                    <FaBed />
+                  </div>
+                  |
+                  <div className='flex items-center gap-1 text-primaryColor'>
+                    <p className='text-black'>{sale?.baths}</p>
+                    <FaBath />
+                  </div>
+                  |
+                  <div className='flex items-center gap-1 text-primaryColor'>
+                    <p className='text-black'>{millify(sale?.area)} sqft</p>
+                    <BsGridFill />
+                  </div>
+                </div>
+                <p className={`${sale.title.length > 30 ? 'text-nowrap text-ellipsis overflow-hidden' : ''}`}>{sale?.title}</p>
+              </div>
+            </Link >
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
 

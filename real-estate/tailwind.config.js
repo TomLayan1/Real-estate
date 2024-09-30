@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         primaryColor: '#825b52',
+        bodyColor: '#fafafa',
         heroBg: '#00000060'
       },
       container: {

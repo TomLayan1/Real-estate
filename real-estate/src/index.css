@@ -10,7 +10,13 @@ body{
 
 @layer utilities {
   .hero-bx {
-    background: url('../../real-estate/src/Assets/hero-img.jpg');
+    background: url('/src/Assets/hero-img.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .newsletter-bx {
+    background: url('/src/Assets/newsletter.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -18,5 +24,5 @@ body{
 }
 
 .test {
-  color: #00000060;
+  color: #00000059;
 }

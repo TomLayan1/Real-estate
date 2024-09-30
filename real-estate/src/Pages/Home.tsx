@@ -3,14 +3,18 @@ import Hero from '../Components/Hero/Hero'
 import Header from '../Components/Header/Header'
 import Rent from '../Components/Properties/Rent'
 import Sale from '../Components/Properties/Sale'
+import Newsletter from '../Components/Newletter/Newsletter'
+import Faqs from '../Components/FAQs/Faqs'
 
 const Home: React.FC = () => {
   return (
-    <div>
+    <div className='bg-bodyColor'>
       <Header />
       <Hero />
       <Rent />
       <Sale />
+      <Faqs />
+      <Newsletter />
     </div>
   )
 }
