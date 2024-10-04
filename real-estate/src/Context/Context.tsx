@@ -22,6 +22,22 @@ export interface Property {
   isVerified: boolean
 }
 
+interface photosType {
+  id: number;
+  title: string;
+  url: string
+}
+
+interface locationType {
+  id: number,
+  name: string
+}
+
+interface amenitiesType{
+  groupRank: number,
+  text: string
+}
+
 interface PropertyDetail {
   externalID: string;
   coverPhoto: {
@@ -42,11 +58,9 @@ interface PropertyDetail {
     }
   };
   phoneNumber: number;
-  photos: {
-    id: number;
-    title: string;
-    url: string
-  }
+  photos: photosType[];
+  location: locationType[]
+  amenities: amenitiesType[]
   isVerified: boolean
 }
 
@@ -54,7 +68,7 @@ interface PropertyDetail {
 export interface RealEstateContextType {
   forSaleData: Property[] | null;
   forRentData: Property[] | null;
-  propertyDetails: PropertyDetail[] | null;
+  propertyDetails: PropertyDetail | null;
   isLoading: boolean;
   error: string | null;
   fetchPropertyDetails: (id: string) => Promise<void>
@@ -68,10 +82,10 @@ interface RealEstateContextProviderProps {
 
 export const RealEstateContextProvider: React.FC<RealEstateContextProviderProps> = ({ children }) => {
   
-  const [forSaleData, setForSaleData] = useState<PropertyDetail[] | null>(null)
-  const [forRentData, setForRentData] = useState<PropertyDetail[] | null>(null)
-  const [propertyDetails, setPropertyDetails] = useState<PropertyDetail[] | null>(null)
-  // console.log(propertyDetails);
+  const [forSaleData, setForSaleData] = useState<Property[] | null>(null)
+  const [forRentData, setForRentData] = useState<Property[] | null>(null)
+  const [propertyDetails, setPropertyDetails] = useState<PropertyDetail | null>(null)
+  console.log(propertyDetails);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   

@@ -8,7 +8,7 @@ import { MdVerified } from "react-icons/md";
 import millify from 'millify'
 import placeholder from '../../Assets/placeholder.jpg'
 
-const Sale = () => {
+const Sale: React.FC = () => {
   // From context
   const { forSaleData, isLoading, error } = useContext(RealEstateContext)
 
