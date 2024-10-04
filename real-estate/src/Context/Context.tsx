@@ -1,15 +1,15 @@
-import { useState, useEffect, createContext, ReactNode } from 'react'
+import { createContext, ReactNode, useState, useEffect, useCallback  } from 'react'
 import axios from 'axios'
 
 
-interface PropertyDetail {
+export interface Property {
   externalID: string;
   coverPhoto: {
     url: string;
   };
   price: number;
   rentFrequency: string;
-  rooms: string;
+  rooms: number;
   title: string;
   baths: number;
   area: number;
@@ -22,22 +22,42 @@ interface PropertyDetail {
   isVerified: boolean
 }
 
-// Define the response structure from the API
-interface ApiResponse {
-  hits: PropertyDetail[];
-  nbHits: number;
-  page: number;
-  nbPages: number;
-  hitsPerPage: number;
+interface PropertyDetail {
+  externalID: string;
+  coverPhoto: {
+    url: string;
+    title: string
+  };
+  description: string
+  price: number;
+  rentFrequency: string;
+  rooms: number;
+  title: string;
+  baths: number;
+  area: number;
+  agency: {
+    name: string;
+    logo: {
+      url: string;
+    }
+  };
+  phoneNumber: number;
+  photos: {
+    id: number;
+    title: string;
+    url: string
+  }
+  isVerified: boolean
 }
 
+
 export interface RealEstateContextType {
-  forSaleData: PropertyDetail[] | null
-  // setForSaleData:  React.Dispatch<React.SetStateAction<PropertyDetail[] | null>>
-  forRentData: PropertyDetail[] | null
-  // setForRentData:  React.Dispatch<React.SetStateAction<PropertyDetail[] | null>>
-  isLoading: boolean
-  error: string
+  forSaleData: Property[] | null;
+  forRentData: Property[] | null;
+  propertyDetails: PropertyDetail[] | null;
+  isLoading: boolean;
+  error: string | null;
+  fetchPropertyDetails: (id: string) => Promise<void>
 }
 
 export const RealEstateContext = createContext<Partial<RealEstateContextType>>({});
@@ -49,22 +69,23 @@ interface RealEstateContextProviderProps {
 export const RealEstateContextProvider: React.FC<RealEstateContextProviderProps> = ({ children }) => {
   
   const [forSaleData, setForSaleData] = useState<PropertyDetail[] | null>(null)
-  const [forRentData, setForRentData] = useState<PropertyDetail[] | null>(null) 
+  const [forRentData, setForRentData] = useState<PropertyDetail[] | null>(null)
+  const [propertyDetails, setPropertyDetails] = useState<PropertyDetail[] | null>(null)
+  // console.log(propertyDetails);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>('');
-  // console.log(forSaleData)
-  // console.log(forRentData)
-
+  const [error, setError] = useState<string | null>(null);
+  
 
   // Fetch For sale datas
   useEffect(()=>{
+    setIsLoading(true)
     const fetchSaleData = async() => {
 
       const options = {
         method: 'GET',
         url: 'https://bayut.p.rapidapi.com/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6',
         headers: {
-          'x-rapidapi-key': '0d93fb5ea1msh5470af294a84a62p1b2147jsn2376be21262b',
+          'x-rapidapi-key': '730d98aa63msh38b9984db0e2af4p15c4bcjsn032be32f09a2',
           'x-rapidapi-host': 'bayut.p.rapidapi.com'
         }
       };
@@ -85,12 +106,13 @@ export const RealEstateContextProvider: React.FC<RealEstateContextProviderProps>
 
   // Fetch for rent datas
   useEffect(() => {
+    setIsLoading(true)
     const fetchRentData = async () => {
       const options = {
         method: 'GET',
         url: 'https://bayut.p.rapidapi.com/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6',
         headers: {
-          'x-rapidapi-key': '0d93fb5ea1msh5470af294a84a62p1b2147jsn2376be21262b',
+          'x-rapidapi-key': '730d98aa63msh38b9984db0e2af4p15c4bcjsn032be32f09a2',
           'x-rapidapi-host': 'bayut.p.rapidapi.com'
         }
       };
@@ -108,11 +130,39 @@ export const RealEstateContextProvider: React.FC<RealEstateContextProviderProps>
     fetchRentData()
   }, [])
 
+  
+  // Fetch property details
+  const fetchPropertyDetails = useCallback( async (id: string) => {
+    setIsLoading(true);
+    const options = {
+      method: 'GET',
+      url: 'https://bayut.p.rapidapi.com/properties/detail',
+      params: { externalID: id },
+      headers: {
+        'x-rapidapi-key': '730d98aa63msh38b9984db0e2af4p15c4bcjsn032be32f09a2',
+        'x-rapidapi-host': 'bayut.p.rapidapi.com',
+      },
+    };
+
+    try {
+      const response = await axios.request(options);
+      console.log(response.data)
+      setPropertyDetails(response.data);
+    } catch (error: any) {
+      setError(error?.message || 'Something went wrong');
+    } finally {
+      setIsLoading(false);
+    }
+  }, [])
+
+
   const contextValue: RealEstateContextType = {
     forSaleData,
     forRentData,
+    propertyDetails,
     isLoading,
     error,
+    fetchPropertyDetails
   }
 
   return (

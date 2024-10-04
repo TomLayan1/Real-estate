@@ -8,7 +8,7 @@ import Faqs from '../Components/FAQs/Faqs'
 
 const Home: React.FC = () => {
   return (
-    <div className='bg-bodyColor'>
+    <div className='bg-bodyColor scroll-smooth'>
       <Header />
       <Hero />
       <Rent />

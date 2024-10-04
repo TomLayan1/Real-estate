@@ -1,22 +1,45 @@
-import React, { useContext } from 'react'
+import React, { useContext, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { RealEstateContext } from '../../Context/Context'
+import Lottie from 'lottie-web';
 import { BsGridFill } from "react-icons/bs";
 import { FaBath, FaBed } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
 import millify from 'millify'
 import placeholder from '../../Assets/placeholder.jpg'
-import { RealEstateContext } from '../../Context/Context'
 
 const Sale = () => {
   // From context
   const { forSaleData, isLoading, error } = useContext(RealEstateContext)
+
+  const container = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (container.current) {
+      Lottie.loadAnimation({
+        container: container.current,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        animationData: require('../../loading.json')
+      })
+    }
+
+    // Cleanup to prevent multiple animations
+     return () => {
+        Lottie.destroy();
+    };
+  }, [])
+
   return (
-    <section id='sale' className='pt-24 pb-14'>
+    <section id='for-sale' className='pt-24 pb-14'>
       <div className='container'>
         <div className='mb-20 w-[90%] mx-auto'>
-          <h1 className='text-2xl md:text-4xl text-center text-primaryColor font-bold mb-3'>Find Your Perfect Rental Home</h1>
-          <p className='text-center'>Browse through a curated selection of rental properties designed to fit your lifestyle and budget.</p>
+          <h1 className='text-2xl md:text-4xl text-center text-primaryColor font-bold mb-3'>Discover Your Ideal Home for Sale</h1>
+          <p className='text-center w-[65%] mx-auto'>Explore a carefully curated collection of properties designed to suit your lifestyle and budget. Start your journey to your dream home today!</p>
         </div>
+        {isLoading && <div className='w-[20%] mx-auto' ref={container}></div>}
+        {error && <p className='text-xl text-center'>{error}</p>  }
         <div className='w-[90%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
           {forSaleData?.map(sale => (
             <Link to={`/property/${sale?.externalID}`} key={sale?.externalID} className='shadow-customShado'>
@@ -28,7 +51,7 @@ const Sale = () => {
                 <div className='flex items-center justify-between'>
                   <div className='flex items-center gap-1 mb-2'>
                     {sale.isVerified && <MdVerified className='text-primaryColor text-lg' />}
-                    <p className='font-bold'>AED {millify(sale?.price)}/{sale.rentFrequency}</p>
+                    <p className='font-bold'>AED {millify(sale?.price)}</p>
                   </div>
                   <img className='w-[30px]' src={sale?.agency?.logo?.url} alt={sale?.agency?.name} />
                 </div>

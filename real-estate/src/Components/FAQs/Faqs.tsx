@@ -37,13 +37,12 @@ const Faqs: React.FC = () => {
       answer: 'Yes, we work with a network of financial institutions to help our clients find suitable mortgage and financing options. We guide you through the process to secure the best rates and terms based on your financial situation.'
     }
   ]
-  const [viewAns, setViewAns] = useState<boolean>(false)
-  const [viewAnswer, setViewAnswer] = useState<number | null>(null)
-  console.log(viewAnswer)
+  const [tuggleAns, setTuggleAns] = useState<number | null>(null)
+  console.log(tuggleAns)
 
   // Toggle the selected FAQ
   const handleFaq = (id: number) => {
-    setViewAnswer(prev => prev === id ? null : id);
+    setTuggleAns(prev => prev === id ? null : id);
   };
 
   return(
@@ -56,17 +55,17 @@ const Faqs: React.FC = () => {
         </div>
       </div>
 
-      <div className='bg-black py-14'>
+      <div className='bg-black py-14 pb-28'>
         <div className='container lg:w-[50%] mx-auto text-white'>
           {faqs.map((faq, index) => (
             <div key={index} className='border border-white rounded-lg mb-5'>
               <div className='flex items-center justify-between py-2 px-2 bg-white bg-opacity-15'>
                 <p className='w-[80%]'>{faq.question}</p>
                 <div className='bg-white py-2 px-2 rounded-full bg-opacity-40' onClick={()=>handleFaq(faq.id)}>
-                  {viewAnswer === faq.id ? <FaAngleUp /> : <FaAngleDown />}
+                  {tuggleAns === faq.id ? <FaAngleUp /> : <FaAngleDown />}
                 </div>
               </div>
-              <div className={`${viewAnswer === faq.id ? 'h-auto py-2' : 'h-[0px]'}  px-2 overflow-hidden ease-linear duration-150`}>
+              <div className={`${tuggleAns === faq.id ? 'h-auto py-2' : 'h-[0px]'}  px-2 overflow-hidden ease-linear duration-150`}>
                 <p>{faq.answer}</p>
               </div>
             </div>
