@@ -40,17 +40,17 @@ const PropertyDetails: React.FC = () => {
 
   return (
     <section className='py-24'>
-      <div className='container w-[80%] mx-auto'>
+      <div className='container w-[90%] mx-auto'>
         {propertyDetails && (
           <>
-            <div className=' lg:max-w-[790px] max-h-[400px] mx-auto rounded-2xl flex relative group overflow-hidden mb-8'>
+            <div className='lg:max-w-[790px] max-h-[400px] mx-auto rounded-2xl flex relative group overflow-hidden mb-8'>
                 {propertyDetails?.photos.map(photo => (
                   <img 
                   style={{ transform: `translateX(-${index * 100}%)`}}
                   className='ease-out duration-500'
                   key={photo?.id} src={photo?.url} alt={photo?.title} />
                 ))}
-              <div className='w-full flex items-center justify-between absolute top-48 px-4'>
+              <div className='w-full h-full flex items-center justify-between absolute px-4'>
                 <button onClick={handlePrev} className='text-primaryColor bg-white bg-opacity-70 p-1 rounded-full'>
                   <FaChevronLeft size={20} />
                 </button>
@@ -59,48 +59,50 @@ const PropertyDetails: React.FC = () => {
                 </button>
               </div>
             </div>
-            
-            <div className='mb-8'>
-              <div className='flex items-center justify-between'>
-                <div className='flex items-center gap-1 mb-2'>
-                  {propertyDetails?.isVerified && <MdVerified className='text-primaryColor text-lg' />}
-                  <div className='flex'>
-                    <p className='font-bold'>AED {millify(propertyDetails?.price)}</p>
-                    {propertyDetails?.rentFrequency && <p className='font-bold'>/{propertyDetails?.rentFrequency}</p>}
+            <div className='lg:max-w-[790px] mx-auto '>
+              <div className='mb-3 text-sm'>
+                <div className='flex items-center justify-between'>
+                  <div className='flex items-center gap-1 mb-2'>
+                    {propertyDetails?.isVerified && <MdVerified className='text-primaryColor text-lg' />}
+                    <div className='flex'>
+                      <p className='font-bold'>AED {millify(propertyDetails?.price)}</p>
+                      {propertyDetails?.rentFrequency && <p className='font-bold'>/{propertyDetails?.rentFrequency}</p>}
+                    </div>
+                  </div>
+                  <img className='w-[30px]' src={propertyDetails?.agency?.logo?.url} alt={propertyDetails?.agency?.name} />
+                </div>
+
+                <div className='flex items-center gap-3 text-primaryColor mb-2'>
+                  <div className='flex items-center gap-1'>
+                    <p className='text-black'>{propertyDetails?.rooms}</p>
+                    <FaBed />
+                  </div>
+                  |
+                  <div className='flex items-center gap-1 text-primaryColor'>
+                    <p className='text-black'>{propertyDetails?.baths}</p>
+                    <FaBath />
+                  </div>
+                  |
+                  <div className='flex items-center gap-1 text-primaryColor'>
+                    <p className='text-black'>{millify(propertyDetails?.area)} sqft</p>
+                    <BsGridFill />
                   </div>
                 </div>
-                <img className='w-[30px]' src={propertyDetails?.agency?.logo?.url} alt={propertyDetails?.agency?.name} />
               </div>
 
-              <div className='flex items-center gap-3 text-primaryColor mb-2'>
-                <div className='flex items-center gap-1'>
-                  <p className='text-black'>{propertyDetails?.rooms}</p>
-                  <FaBed />
-                </div>
-                |
-                <div className='flex items-center gap-1 text-primaryColor'>
-                  <p className='text-black'>{propertyDetails?.baths}</p>
-                  <FaBath />
-                </div>
-                |
-                <div className='flex items-center gap-1 text-primaryColor'>
-                  <p className='text-black'>{millify(propertyDetails?.area)} sqft</p>
-                  <BsGridFill />
-                </div>
-              </div>
-              <div className ='flex gap-1 text-primaryColor place-items-baseline mb-4'>
-                <FaLocationDot />
-                <div className='flex flex-wrap gap-8'>
-                  {propertyDetails.location.map(location => (
-                    <p className='text-black font-semibold' key={location.id}>{location.name}</p>
+              <div className='text-sm md:text-base'>
+                <h4 className='text-lg uppercase font-bold mb-5'>{propertyDetails.title}</h4>
+                <p className='tracking-wide leading-8 mb-4'>{propertyDetails?.description}</p>
+                <h3 className='font-semibold uppercase tracking-wide mb-3'>Purpose: <span className='font-normal'>{propertyDetails.purpose}</span></h3>
+                <h3 className='font-semibold uppercase tracking-wide mb-3'>Facilities</h3>
+                <ul>
+                  {propertyDetails?.amenities.map(amenityGroup => (
+                    amenityGroup?.amenities?.map((item, i) => (
+                      <li className='mb-2'>{item?.text}</li>
+                    ))
                   ))}
-                </div>
+                </ul>
               </div>
-              <h4 className='text-xl font-bold'>{propertyDetails.title}</h4>
-            </div>
-
-            <div>
-              <p className='tracking-wide leading-8'>{propertyDetails?.description}</p>
             </div>
           </>
         )}

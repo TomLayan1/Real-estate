@@ -4,11 +4,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home';
 import Search from './Pages/Search/Search'
 import PropertyDetails from './Pages/PropertyDetails/PropertyDetails'
+import Header from './Components/Header/Header';
 
 function App() {
   return (
     <RealEstateContextProvider>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/search' element={<Search />} />

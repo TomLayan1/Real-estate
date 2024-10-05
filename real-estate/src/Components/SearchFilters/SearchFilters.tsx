@@ -1,22 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { MdCancel } from 'react-icons/md'
 import { filterData, getFilterValues } from '../../FilterData/FilterData'
 
 const SearchFilters: React.FC = () => {
 
+  const navigate= useNavigate();
+  const location = useLocation()
   const [filters, setFilters] = useState<Record<string, string>>({});
-  const [filter, setFilter] = useState(filterData);
 
-  // Function to handle filter changes
-  const SearchProperties = (filterValues: Record<string, string>) => {
+// Function to handle filter changes
+  const searchProperties = (filterValues: Record<string, string>) => {
+    // Update filter state
     setFilters((prevFilters) => ({
       ...prevFilters,
       ...filterValues,
     }));
 
-    // Log or send filterValues to where search logic will be implemented
-    const filterQueryValues = getFilterValues(filters);
-    // console.log(filterQueryValues);
+    // Get filter query values based on selected filters
+    const filterQueryValues = getFilterValues({ ...filters, ...filterValues });
+
+    // Build the new query params
+    const searchParams = new URLSearchParams(location.search);
+
+    filterQueryValues.forEach((item) => {
+      if (item.value && filterValues[item.name]) {
+        searchParams.set(item.name, item.value);
+      }
+    });
+
+    // Push the new query params to the URL
+    navigate({ pathname: location.pathname, search: searchParams.toString() });
   };
 
   return(
@@ -26,7 +40,7 @@ const SearchFilters: React.FC = () => {
           <div key={filter.queryName}>
             <select
               className='p-2 text-[14px] outline-none'
-              onChange={(e)=>SearchProperties({ [filter.queryName]: e.target.value})}>
+              onChange={(e)=>searchProperties({ [filter.queryName]: e.target.value})}>
                 <option>{filter.placeholder}</option>
                 {filter?.items?.map(item => (
                   <option
@@ -38,7 +52,6 @@ const SearchFilters: React.FC = () => {
           </div>
         ))}
       </div>
-      <p>Showing!</p>
     </section>
   )
 }

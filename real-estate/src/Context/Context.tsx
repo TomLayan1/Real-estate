@@ -33,9 +33,12 @@ interface locationType {
   name: string
 }
 
-interface amenitiesType{
-  groupRank: number,
-  text: string
+interface amenityItem{
+    text: string
+}
+
+interface amenityGroup {
+  amenities: amenityItem[];
 }
 
 interface PropertyDetail {
@@ -59,8 +62,11 @@ interface PropertyDetail {
   };
   phoneNumber: number;
   photos: photosType[];
-  location: locationType[]
-  amenities: amenitiesType[]
+  location: locationType[];
+  amenities: amenityGroup[];
+  furnishingStatus: string;
+  purpose: string;
+  type: string;
   isVerified: boolean
 }
 
@@ -160,7 +166,6 @@ export const RealEstateContextProvider: React.FC<RealEstateContextProviderProps>
 
     try {
       const response = await axios.request(options);
-      console.log(response.data)
       setPropertyDetails(response.data);
     } catch (error: any) {
       setError(error?.message || 'Something went wrong');

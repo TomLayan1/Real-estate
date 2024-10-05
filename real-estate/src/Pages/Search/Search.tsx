@@ -60,10 +60,11 @@ const Search: React.FC = () => {
       try {
         const response = await axios.get(url, {
           headers: {
-            'x-rapidapi-key': 'bdc91f2172msh2523b27cde8fc29p15d1a9jsn31754167cb56',
+            'x-rapidapi-key': '730d98aa63msh38b9984db0e2af4p15c4bcjsn032be32f09a2',
             'x-rapidapi-host': 'bayut.p.rapidapi.com'
           }
         });
+        console.log(response?.data?.hits)
         setProperties(response.data.hits || []);
       } catch (error) {
         console.error('Error fetching properties:', error);
@@ -81,7 +82,6 @@ const Search: React.FC = () => {
 
   return(
     <section className='bg-bodyColor pt-28 pb-14'>
-      <Header />
       <div className='container w-[87%] mx-auto'>
         <div onClick={()=>setSearchFilter(!searchFilter)} className='flex items-center justify-center mb-5'>
             <div className='flex items-center gap-4 cursor-pointer'>
