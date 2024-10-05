@@ -95,13 +95,13 @@ const PropertyDetails: React.FC = () => {
                 <p className='tracking-wide leading-8 mb-4'>{propertyDetails?.description}</p>
                 <h3 className='font-semibold uppercase tracking-wide mb-3'>Purpose: <span className='font-normal'>{propertyDetails.purpose}</span></h3>
                 <h3 className='font-semibold uppercase tracking-wide mb-3'>Facilities</h3>
-                <ul>
+                <div>
                   {propertyDetails?.amenities.map(amenityGroup => (
                     amenityGroup?.amenities?.map((item, i) => (
-                      <li className='mb-2'>{item?.text}</li>
+                      <p className='mb-2'>{item?.text}</p>
                     ))
                   ))}
-                </ul>
+                </div>
               </div>
             </div>
           </>
