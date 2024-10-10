@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home';
 import Search from './Pages/Search/Search'
 import PropertyDetails from './Pages/PropertyDetails/PropertyDetails'
-import Header from './Components/Header/Header';
+import Header from './Components/Navbar/Navbar';
 
 function App() {
   return (

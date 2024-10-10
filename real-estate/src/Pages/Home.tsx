@@ -1,6 +1,6 @@
 import React from 'react'
 import Hero from '../Components/Hero/Hero'
-import Header from '../Components/Header/Header'
+import Header from '../Components/Navbar/Navbar'
 import Rent from '../Components/Properties/Rent'
 import Sale from '../Components/Properties/Sale'
 import Newsletter from '../Components/Newletter/Newsletter'

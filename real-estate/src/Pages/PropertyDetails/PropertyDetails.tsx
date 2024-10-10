@@ -38,12 +38,13 @@ const PropertyDetails: React.FC = () => {
     }
   }
 
+
   return (
     <section className='py-24'>
       <div className='container w-[90%] mx-auto'>
         {propertyDetails && (
           <>
-            <div className='lg:max-w-[790px] max-h-[400px] mx-auto rounded-2xl flex relative group overflow-hidden mb-8'>
+            <div className='max-w-[790px] max-h-[300px] md:max-h-[400px] mx-auto rounded-2xl flex relative group overflow-hidden mb-8'>
                 {propertyDetails?.photos.map(photo => (
                   <img 
                   style={{ transform: `translateX(-${index * 100}%)`}}
