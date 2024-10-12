@@ -5,8 +5,8 @@ import Lottie from 'lottie-web';
 import { BsGridFill } from "react-icons/bs";
 import { FaBath, FaBed } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
-import millify from 'millify'
-import placeholder from '../../Assets/placeholder.jpg'
+import millify from 'millify';
+import placeholder from '../../Assets/placeholder.jpg';
 
 const Sale: React.FC = () => {
   // From context
