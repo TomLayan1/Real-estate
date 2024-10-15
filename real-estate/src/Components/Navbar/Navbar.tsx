@@ -7,8 +7,46 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   // State to tuggle icons
   const [ isTuggle, setIsTuggle] = useState<boolean>(false)
-  const [searchClicked, setSearchClicked] = useState<boolean>(false)
+  const [current, setCurrent] = useState<string>('Home')
 
+  interface NavItemsType {
+    id: number,
+    name: string,
+    to: string
+  }
+
+  const navItems = [
+    {
+      id: 1,
+      name: 'Home',
+      to: '/'
+    },
+    {
+      id: 2,
+      name: 'For Rent',
+      to: '/search?purpose=for-rent'
+    },
+    {
+      id: 3,
+      name: 'For Sale',
+      to: '/search?purpose=for-sale'
+    },
+    {
+      id: 4,
+      name: 'Search',
+      to: '/search'
+    }
+  ]
+
+  const handleNav = (id:number) => {
+    const selectedNav = navItems.find(nav => ( id === nav.id));
+
+    if (selectedNav){
+      setCurrent(selectedNav?.name)
+    }
+
+    setIsTuggle(false)
+  }
 
   return (
     <div className='w-full fixed z-30 top-4 md:top-3'>
@@ -21,15 +59,13 @@ const Header = () => {
 
           <nav className={`w-full md:w-auto ${isTuggle ? 'h-[500px]' : 'h-0'} absolute md:static md:h-auto top-14 bg-white md:bg-inherit overflow-hidden ease-linear duration-300`}>
             <ul className='h-[250px] md:h-auto py-9 md:py-0 flex flex-col md:flex-row items-center gap-10'>
-              <Link to={'/'}><li className=''>Home</li></Link>
-              <Link to={'/search?purpose=for-rent'}><li>For Rent</li></Link>
-              <Link to={'/search?purpose=for-sale'}><li>For Sale</li></Link>
-              <Link to={'/search'}><li className=''>Search</li></Link>
+              {navItems.map(nav => (
+                <Link onClick={() => handleNav(nav.id)} className={`${current === nav.name ? 'text-primaryColor' : 'text-black'}`} key={nav.id} to={nav.to}><li>{nav.name}</li></Link>
+              ))}
             </ul>
           </nav>
 
           <div className='flex items-center gap-3'>
-            <Link to={''}><IoSearchSharp size={20} onClick={()=>setSearchClicked(!searchClicked)} /></Link>
             <button className='bg-primaryColor text-sm text-white py-2 px-4 rounded-full'>Contact</button>
             <div onClick={() => setIsTuggle(!isTuggle)} className='w-[8%] md:hidden'>
               {isTuggle ? <FaTimes size={23} /> : <FaBars size={23} />}

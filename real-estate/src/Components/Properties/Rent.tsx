@@ -33,11 +33,11 @@ const Rent: React.FC = () => {
   
   
   return (
-    <section id='for-rent' className='pt-24 pb-14'>
+    <section id='for-rent' className='pt-24 pb-7'>
       <div className='container'>
         <div className='mb-20 w-[90%] mx-auto'>
           <h1 className='text-2xl md:text-4xl text-center text-primaryColor font-bold mb-3'>Find Your Perfect Rental Home</h1>
-          <p className='text-center w-[65%] mx-auto'>Browse through a curated selection of rental properties designed to fit your lifestyle and budget.</p>
+          <p className='text-center text-sm md:text-base w-[65%] mx-auto'>Browse through a curated selection of rental properties designed to fit your lifestyle and budget.</p>
         </div>
         {isLoading && <div className='w-[20%] mx-auto' ref={container}></div>}
         {error && <p className='text-xl text-center'>{error}</p>}

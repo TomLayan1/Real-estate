@@ -1,7 +1,7 @@
 body{
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
 @tailwind base;
@@ -9,6 +9,12 @@ body{
 @tailwind utilities;
 
 @layer utilities {
+  .search-scrollbar::-webkit-scrollbar {
+    width: 2px;
+  }
+  .search-scrollbar::-webkit-scrollbar-thumb {
+    background: #825b52;
+  }
   .hero-bx {
     background: url('/src/Assets/hero-img.jpg');
     background-size: cover;

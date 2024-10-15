@@ -15,9 +15,10 @@ const SearchFilters: React.FC = () => {
   const location = useLocation()
   const [filters, setFilters] = useState<Record<string, string>>({});
   const [searchInput, setSearchInput] = useState<string>('');
-  const [searchLocation, setSearchLocation] = useState<LocationType | null>(null);
+  const [searchLocation, setSearchLocation] = useState<LocationType[] | null>(null);
   const [searchResult, setSearchResult] = useState<Property[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  console.log(searchLocation)
 
 // Function to handle filter changes
   const searchProperties = (filterValues: Record<string, string>) => {
@@ -98,18 +99,18 @@ const SearchFilters: React.FC = () => {
         ))}
       </div>
 
-      <div className='md:w-[300px] mx-auto bg-yellow-500'>
+      <div className='md:w-[300px] mx-auto bg-yellow-500 relative'>
         <input
         type='search'
         name='searchInput'
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
         placeholder='Search Properties' className='w-full border border-black px-2 py-1 text-sm outline-0' />
-        <div className='bg-white'>
-        {/* {searchLocation && searchLocation.length ? searchLocation.map(location => (
-          <div></div>
-        ))} */}
-        </div>
+        {searchInput && <div className='bg-white absolute w-full shadow-customShadow h-[350px] overflow-hidden overflow-y-scroll search-scrollbar'>
+        {searchLocation?.map(location => (
+          <div key={location?.id} className='px-2 py-1'>{location?.name}</div>
+        ))}
+        </div>}
       </div>
     </section>
   )
