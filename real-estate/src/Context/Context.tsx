@@ -1,75 +1,7 @@
 import { createContext, ReactNode, useState, useEffect, useCallback  } from 'react'
 import axios from 'axios'
-
-
-export interface Property {
-  externalID: string;
-  coverPhoto: {
-    url: string;
-  };
-  price: number;
-  rentFrequency: string;
-  rooms: number;
-  title: string;
-  baths: number;
-  area: number;
-  agency: {
-    name: string;
-    logo: {
-      url: string;
-    }
-  };
-  isVerified: boolean
-}
-
-interface photosType {
-  id: number;
-  title: string;
-  url: string
-}
-
-interface locationType {
-  id: number,
-  name: string
-}
-
-interface amenityItem{
-    text: string
-}
-
-interface amenityGroup {
-  amenities: amenityItem[];
-}
-
-interface PropertyDetail {
-  externalID: string;
-  coverPhoto: {
-    url: string;
-    title: string
-  };
-  description: string
-  price: number;
-  rentFrequency: string;
-  rooms: number;
-  title: string;
-  baths: number;
-  area: number;
-  agency: {
-    name: string;
-    logo: {
-      url: string;
-    }
-  };
-  phoneNumber: number;
-  photos: photosType[];
-  location: locationType[];
-  amenities: amenityGroup[];
-  furnishingStatus: string;
-  purpose: string;
-  type: string;
-  isVerified: boolean
-}
-
+import { Property } from '../Interface/Interface';
+import { PropertyDetail } from '../Interface/Interface';
 
 export interface RealEstateContextType {
   forSaleData: Property[] | null;
@@ -91,7 +23,6 @@ export const RealEstateContextProvider: React.FC<RealEstateContextProviderProps>
   const [forSaleData, setForSaleData] = useState<Property[] | null>(null)
   const [forRentData, setForRentData] = useState<Property[] | null>(null)
   const [propertyDetails, setPropertyDetails] = useState<PropertyDetail | null>(null)
-  console.log(propertyDetails);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   

@@ -1,14 +1,13 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { BsGridFill } from "react-icons/bs";
 import { FaBath, FaBed } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
-import millify from 'millify'
-import placeholder from '../../Assets/placeholder.jpg'
-import { Property } from '../../Context/Context'
+import millify from 'millify';
+import placeholder from '../../Assets/placeholder.jpg';
+import { Property } from '../../Interface/Interface';
 
-
-const SearchProperties: React.FC<Property> = ({ externalID, coverPhoto, price, rentFrequency, rooms, title, baths, area, agency, isVerified }) => {
+const SearchProperties: React.FC<Property> = ({ externalID, name, coverPhoto, price, rentFrequency, rooms, title, baths, area, agency, isVerified }) => {
 
 
   return (

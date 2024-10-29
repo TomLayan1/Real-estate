@@ -33,8 +33,11 @@ body{
     background-position: center;
     background-repeat: no-repeat;
   }
+  .location:hover {
+    background-color: #a8a4a4;
+  }
 }
 
 .test {
-  color: #00000069;
+  color: #212020;
 }

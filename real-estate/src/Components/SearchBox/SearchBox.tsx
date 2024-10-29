@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
-import { Property } from '../../Context/Context';
+import { Property } from '../../Interface/Interface';
 
 const SearchBox: React.FC = () => {
-  const [searchResult, setSearchResult] = useState<Property | null>(null)
   const [searchInput, setSearchInput] = useState<string>('');
-  // console.log(searchInput);
 
   useEffect(() =>  {
     if (searchInput !== '') {

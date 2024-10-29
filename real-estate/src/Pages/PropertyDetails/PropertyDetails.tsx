@@ -1,19 +1,16 @@
-import React, { useContext, useEffect, useState, useCallback } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { RealEstateContext } from '../../Context/Context'
-import useEmblaCarousel from 'embla-carousel-react'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { BsGridFill } from "react-icons/bs";
 import { FaBath, FaBed } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
-import { FaLocationDot } from "react-icons/fa6";
-import millify from 'millify'
-
+import millify from 'millify';
 
 
 const PropertyDetails: React.FC = () => {
   // From context
-  const { isLoading, error, propertyDetails, fetchPropertyDetails } = useContext(RealEstateContext)
+  const { propertyDetails, fetchPropertyDetails } = useContext(RealEstateContext)
 
   const { ExternalID } = useParams<{ ExternalID: string }>()
 
