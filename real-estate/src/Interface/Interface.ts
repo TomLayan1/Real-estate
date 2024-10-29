@@ -66,3 +66,10 @@ export interface PropertyDetail {
   type: string;
   isVerified: boolean
 }
+
+export interface ContactType {
+  name: string;
+  email: string;
+  country: string;
+  message: string
+}

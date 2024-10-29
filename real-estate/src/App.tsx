@@ -1,21 +1,23 @@
-import React from 'react';
+import {useState} from 'react';
 import { RealEstateContextProvider } from './Context/Context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home';
 import Search from './Pages/Search/Search'
 import PropertyDetails from './Pages/PropertyDetails/PropertyDetails'
-import Header from './Components/Navbar/Navbar';
+import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import Contact from './Components/Contact/Contact';
 
 function App() {
-
+  // To show contact form
+  const [displayContact, setDisplayContact] = useState<boolean>(false)
+  console.log(displayContact)
   
   return (
     <RealEstateContextProvider>
       <BrowserRouter>
-        <Header />
-        <Contact />
+        <Navbar setDisplayContact={setDisplayContact} />
+        <Contact displayContact={displayContact} setDisplayContact={setDisplayContact} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/search' element={<Search />} />

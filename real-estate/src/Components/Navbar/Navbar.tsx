@@ -4,7 +4,11 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { IoSearchSharp } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+interface Props {
+  setDisplayContact: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Navbar:React.FC<Props> = ({setDisplayContact}) => {
   // State to tuggle icons
   const [ isTuggle, setIsTuggle] = useState<boolean>(false)
   const [current, setCurrent] = useState<string>('Home')
@@ -54,7 +58,7 @@ const Header = () => {
         <div className='relative flex items-center justify-between'>
           <Link to={'/'}><div className='flex items-center lg:mr-28'>
             <MdOutlineHouseboat style={{ color: '#825b52' }} className='text-3xl' />
-            <h1 className='hidden md:block text-2xl'>Realtor</h1>
+            <h1 className='hidden md:block text-2xl'>City Scape</h1>
           </div></Link>
 
           <nav className={`w-full md:w-auto ${isTuggle ? 'h-[500px]' : 'h-0'} absolute md:static md:h-auto top-14 bg-white md:bg-inherit overflow-hidden ease-linear duration-300`}>
@@ -66,7 +70,7 @@ const Header = () => {
           </nav>
 
           <div className='flex items-center gap-3'>
-            <button className='bg-primaryColor text-sm text-white py-2 px-4 rounded-full'>Contact</button>
+            <button className='bg-primaryColor text-sm text-white py-2 px-4 rounded-full' onClick={()=>setDisplayContact(true)}>Contact</button>
             <div onClick={() => setIsTuggle(!isTuggle)} className='w-[8%] md:hidden'>
               {isTuggle ? <FaTimes size={23} /> : <FaBars size={23} />}
             </div>
@@ -77,4 +81,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Navbar

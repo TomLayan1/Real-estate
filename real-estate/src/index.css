@@ -1,7 +1,6 @@
 body{
   padding: 0;
   margin: 0;
-  /* box-sizing: border-box; */
 }
 
 @tailwind base;
@@ -36,8 +35,14 @@ body{
   .location:hover {
     background-color: #a8a4a4;
   }
+  .contact-form-bg {
+    background: url('/src/Assets/contact.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 }
 
 .test {
-  color: #212020;
+  color: #21202068;
 }

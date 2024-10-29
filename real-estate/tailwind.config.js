@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         primaryColor: '#825b52',
         bodyColor: '#fafafa',
+        contactBg: '#21202068',
         heroBg: '#00000069',
         footerBg: '#121212',
         footerBgTwo: '#212020'
