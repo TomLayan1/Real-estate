@@ -34,7 +34,7 @@ const Sale: React.FC = () => {
   return (
     <section id='for-sale' className='pt-20 pb-14'>
       <div className='container'>
-        <div className='mb-20 w-[90%] mx-auto'>
+        <div className='mb-20 mx-auto'>
           <h1 className='text-2xl md:text-4xl text-center text-primaryColor font-bold mb-3'>Discover Your Ideal Home for Sale</h1>
           <p className='text-center text-sm md:text-base md:w-[65%] mx-auto'>Explore a carefully curated collection of properties designed to suit your lifestyle and budget. Start your journey to your dream home today!</p>
         </div>

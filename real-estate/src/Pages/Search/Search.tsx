@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, } from 'react';
+import React, { useEffect, useState, useMemo, useRef, } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import Lottie from 'lottie-web';
@@ -9,18 +9,12 @@ import { Property } from '../../Interface/Interface';
 
 
 
-const Search: React.FC = () => {
+const Search:React.FC = () => {
 
   const [searchFilter, setSearchFilter] = useState<boolean>(false)
   const [properties, setProperties] = useState<Property[] | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
-  const [isTyping, setIsTyping] = useState<boolean>(false);
-  const [searchLocation, setSearchLocation] = useState<Property[] | null>(null);
-  const [searchInput, setSearchInput] = useState<string>('');
-  console.log(searchLocation)
-
-
 
   // Lottie setup
   const container = useRef<HTMLDivElement | null>(null);
@@ -45,11 +39,11 @@ const Search: React.FC = () => {
   // React Router to access the query parameters
   const location = useLocation();
   // Parses the query string into an easy-to-access format
-  const queryParams = new URLSearchParams(location.search);
+  const queryParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
   // Retrieves the value of the purpose query parameter
   const purpose = queryParams.get('purpose');
 
-// Fetch properties when component mounts
+  // Fetch properties when component mounts
   useEffect(() => {
     const fetchProperties = async () => {
       const rentFrequency = queryParams.get('rentFrequency') || 'yearly';
@@ -82,46 +76,11 @@ const Search: React.FC = () => {
     fetchProperties();
 
     // location.search re-fetch when query parameters change
-  }, [location.search]);
-
-  // For the search
-  useEffect(() =>  {
-    if (searchInput !== '') {
-      setIsTyping(true)
-      const handleSearch = async () => {
-        const options = {
-          method: 'GET',
-          url: 'https://bayut.p.rapidapi.com/auto-complete',
-          params: {
-            query: searchInput,
-            hitsPerPage: '25',
-            page: '0',
-            lang: 'en'
-          },
-          headers: {
-            'x-rapidapi-key': 'ad710ee344msh1bb8adb9b7595c5p184824jsnc5a2b2eba8cb',
-            'x-rapidapi-host': 'bayut.p.rapidapi.com'
-          }
-        };
-
-        try {
-          const response = await axios.request(options);
-          setSearchLocation(response?.data?.hits)
-          console.log(response?.data?.hits);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-
-      handleSearch()
-    }
-  }, [searchInput])
-
-
+  }, [location.search, purpose, queryParams]);
 
 
   return(
-    <section onClick={() => setIsTyping(false)} className='bg-bodyColor pt-28 pb-14 min-h-[100vh]'>
+    <section className='bg-bodyColor pt-28 pb-14 min-h-[100vh]'>
       <div className='container w-[87%] mx-auto'>
         <div onClick={()=>setSearchFilter(!searchFilter)} className='flex items-center justify-center mb-5'>
             <div className='flex items-center gap-4 cursor-pointer'>

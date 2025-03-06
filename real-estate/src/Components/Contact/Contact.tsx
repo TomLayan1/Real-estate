@@ -44,8 +44,8 @@ const Contact: React.FC<Props> = ({displayContact, setDisplayContact}) => {
     <>
       {displayContact && <div className='bg-contactBg fixed top-0 left-0 right-0 bottom-0 z-50 flex items-center justify-center shadow-customShadow'>
         <div className='container bg-white rounded-xl w-[70%] h-[490px] py-6'>
-          <div className='flex items-center justify-between pl-3 text-lg'>
-            <h3>Contact Us</h3>
+          <div className='flex items-center justify-between pl-3'>
+            <h3 className='text-primaryColor text-2xl font-bold'>Contact Us</h3>
             <FaTimes style={{ cursor: 'pointer'}} onClick={()=>setDisplayContact(false)} />
           </div>
           <div className='md:flex items-center gap-3'>

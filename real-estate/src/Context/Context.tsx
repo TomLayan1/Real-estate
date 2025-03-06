@@ -36,7 +36,7 @@ export const RealEstateContextProvider: React.FC<RealEstateContextProviderProps>
         method: 'GET',
         url: 'https://bayut.p.rapidapi.com/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6',
         headers: {
-          'x-rapidapi-key': 'ad710ee344msh1bb8adb9b7595c5p184824jsnc5a2b2eba8cb',
+          'x-rapidapi-key': '0d93fb5ea1msh5470af294a84a62p1b2147jsn2376be21262b',
           'x-rapidapi-host': 'bayut.p.rapidapi.com'
         }
       };
@@ -63,7 +63,7 @@ export const RealEstateContextProvider: React.FC<RealEstateContextProviderProps>
         method: 'GET',
         url: 'https://bayut.p.rapidapi.com/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6',
         headers: {
-          'x-rapidapi-key': 'ad710ee344msh1bb8adb9b7595c5p184824jsnc5a2b2eba8cb',
+          'x-rapidapi-key': '0d93fb5ea1msh5470af294a84a62p1b2147jsn2376be21262b',
           'x-rapidapi-host': 'bayut.p.rapidapi.com'
         }
       };
@@ -90,7 +90,7 @@ export const RealEstateContextProvider: React.FC<RealEstateContextProviderProps>
       url: 'https://bayut.p.rapidapi.com/properties/detail',
       params: { externalID: id },
       headers: {
-        'x-rapidapi-key': 'ad710ee344msh1bb8adb9b7595c5p184824jsnc5a2b2eba8cb',
+        'x-rapidapi-key': '0d93fb5ea1msh5470af294a84a62p1b2147jsn2376be21262b',
         'x-rapidapi-host': 'bayut.p.rapidapi.com',
       },
     };

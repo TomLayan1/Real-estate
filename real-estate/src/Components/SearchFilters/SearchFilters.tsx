@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { filterData, getFilterValues } from '../../FilterData/FilterData'
-import { Property } from '../../Interface/Interface';
 
 const SearchFilters: React.FC = () => {
 

@@ -11,7 +11,6 @@ import Contact from './Components/Contact/Contact';
 function App() {
   // To show contact form
   const [displayContact, setDisplayContact] = useState<boolean>(false)
-  console.log(displayContact)
   
   return (
     <RealEstateContextProvider>
